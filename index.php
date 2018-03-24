@@ -1,25 +1,19 @@
 <?php
   require "sessions.php";
   require "db_init.php";
+  require "validate.php";
   if(isset($_POST['login']))
   {
 
     //User Name Validation :)
     $user = $_POST['user_name'];
-    $user = stripslashes( $user );
-    $user =  mysql_real_escape_string( $user );
+    $user = $val->username($user);
     //Password Validation
 
     $pass = $_POST['pass_user'];
-    $pass = stripslashes( $pass );
-    $pass = mysql_real_escape_string( $pass );
-    $pass = md5( $pass );
-  
+    $pass = $val->password($pass);
+
     //prevent brute force
-    echo "Name : ".$user;
-    echo "<br/>";
-    echo "Password : ".$pass;
-    echo "<br/>";
     $total_failed_login = 3;
     $lockout_time       = 1;
     $account_locked     = false;
@@ -36,7 +30,6 @@
 
         if( $timenow < $timeout ) {
             $account_locked = true;
-
         }
     }
     $data = $conn->prepare( 'SELECT * FROM user_entries WHERE Name = (:user) AND Password = (:password) LIMIT 1;' );
@@ -50,9 +43,10 @@
         $last_login   = $row[ 'LastLogin' ];
 
         // Login successful
-        echo "Login successful";
-        echo "Welcome ".$user." you have logged in !!";
-
+        echo "Login successful<br/>";
+        echo "Welcome ".$user." you have logged in !!<br/>";
+        //Session Creation
+        $_SESSION['id'] = session_generate($user);
         // Had the account been locked out since last login?
         if( $failed_login >= $total_failed_login ) {
             echo "<p><em>Warning</em>: Brute Force may have been tried over you account.</p>";
@@ -68,8 +62,14 @@
         sleep( rand( 2, 4 ) );
 
         // Give the user some feedback
-        echo "<pre><br />Username and/or password incorrect.<br /><br/>Alternative, the account has been locked because of too many failed logins.<br />If this is the case, <em>please try again in {$lockout_time} minutes</em>.</pre>";
 
+        if($account_locked == true)
+        {
+        echo "<pre><br/>Your account has been locked because of too many failed logins.<br />If this is the case, <em>please try again in {$lockout_time} minutes</em>.</pre>";
+      }
+        else {
+          echo "<pre><br />Username and/or password incorrect.<br /></pre>";
+        }
         // Update bad login count
         $data = $conn->prepare( 'UPDATE user_entries SET FailedLogin = (FailedLogin + 1) WHERE Name = (:user) LIMIT 1;' );
         $data->bindParam( ':user', $user, PDO::PARAM_STR );
@@ -82,11 +82,15 @@
     $data->execute();
   }
  ?>
-<html>
-  <head>
-    <title>Project Secure Programmers</title>
-  </head>
-  <body>
+ <html>
+   <head>
+     <title>Project Secure Programmers</title>
+   </head>
+   <body>
+ <?php
+ if($_SESSION['id'] == "-1")
+ {?>
+
     <form action="" method="post">
       <label>User Name: </label>
       <input type="text" name="user_name" required/>
@@ -94,5 +98,12 @@
       <input type="password" name="pass_user" required/>
       <input type="submit" name="login" value="login"/>
     </form>
+<?php
+ }
+  else {
+    echo "else part";
+
+    }
+  ?>
   </body>
 </html>

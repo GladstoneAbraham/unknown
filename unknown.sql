@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2018 at 11:07 AM
+-- Generation Time: Mar 24, 2018 at 04:42 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -27,11 +27,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `user_entries` (
-  `Id` int(200) NOT NULL,
+  `Id` int(6) NOT NULL,
   `Name` varchar(25) NOT NULL,
   `Password` varchar(100) NOT NULL,
   `FailedLogin` int(10) NOT NULL,
-  `LastLogin` date NOT NULL
+  `LastLogin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -39,9 +39,9 @@ CREATE TABLE `user_entries` (
 --
 
 INSERT INTO `user_entries` (`Id`, `Name`, `Password`, `FailedLogin`, `LastLogin`) VALUES
-(1, 'stormworm', '86ee9ec673586976cc93b14d72b9072b', 0, '2018-03-23'),
-(3, 'sw', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2018-03-24'),
-(4, 'sw1', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2018-03-24');
+(1, 'stormworm', '86ee9ec673586976cc93b14d72b9072b', 0, '2018-03-24 14:34:01'),
+(3, 'sw', '81dc9bdb52d04dc20036dbd8313ed055', 10, '2018-03-24 15:37:18'),
+(4, 'sw1', '81dc9bdb52d04dc20036dbd8313ed055', 0, '2018-03-23 18:30:00');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +61,7 @@ ALTER TABLE `user_entries`
 -- AUTO_INCREMENT for table `user_entries`
 --
 ALTER TABLE `user_entries`
-  MODIFY `Id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
