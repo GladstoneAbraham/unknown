@@ -3,16 +3,23 @@
   require "db_init.php";
   if(isset($_POST['login']))
   {
+
     //User Name Validation :)
     $user = $_POST['user_name'];
     $user = stripslashes( $user );
-    $user = $conn->quote( $user );
+    $user =  mysql_real_escape_string( $user );
     //Password Validation
+
     $pass = $_POST['pass_user'];
     $pass = stripslashes( $pass );
-    $pass = $conn->quote( $pass );
-    $pass = md5($pass);
+    $pass = mysql_real_escape_string( $pass );
+    $pass = md5( $pass );
+  
     //prevent brute force
+    echo "Name : ".$user;
+    echo "<br/>";
+    echo "Password : ".$pass;
+    echo "<br/>";
     $total_failed_login = 3;
     $lockout_time       = 1;
     $account_locked     = false;
@@ -41,7 +48,7 @@
         // Get users details
         $failed_login = $row[ 'FailedLogin' ];
         $last_login   = $row[ 'LastLogin' ];
-        
+
         // Login successful
         echo "Login successful";
         echo "Welcome ".$user." you have logged in !!";
