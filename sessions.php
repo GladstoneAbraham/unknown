@@ -2,11 +2,12 @@
 require "db_init.php";
 
 session_start();
-$_SESSION['id'] = "-1";
-function session_generate($user)
+$_SESSION['lock'] = false;
+$_SESSION['failed'] = false;
+function session_generate()
 {
-  $t = md5(md5("SW") + md5($user));
-  return $t;
+  $cookie_value = sha1(mt_rand() . time() . md5("ProjectUnknown2018"));
+  setcookie("SSID", $cookie_value, time()+3600, "/", $_SERVER['HTTP_HOST'], false, true);
 }
 
 ?>
