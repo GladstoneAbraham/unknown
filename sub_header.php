@@ -9,7 +9,7 @@ if(!isset($_COOKIE['SSID']))
       echo "<pre><br />Username and/or password incorrect.<br /></pre>";
     }
   ?>
-  <div class = "jumbotron jumbotron-fluid">
+  <div class = "jumbotron jumbotron-fluid bg-dark text-light">
     <div class="container">
      <h1 align="center">Project Unknown Login Page</h1>
    </div>
@@ -18,16 +18,16 @@ if(!isset($_COOKIE['SSID']))
     <div class = "row">
     <div class = "col-lg-4">
     </div>
-    <div class = "col-lg-2">
-   <form action="login_val.php" method="post">
-     <label>User Name: </label>
-     <input type="text" name="user_name" required/>
-     <label>Password: </label>
-     <input type="password" name="pass_user" required/>
-     <input type="submit" class="btn" name="login" value="login"/>
+    <div class = "col-lg-4 form-group">
+   <form class="form-control bg-dark" action="login_val.php" method="post">
+     <label class="text-light">User Name: </label>
+     <input class="form-control"type="text" name="user_name" required/>
+     <label class="text-light" >Password: </label>
+     <input class="form-control" type="password" name="pass_user" required/><br/>
+     <input class="form-control" type="submit" class="btn" name="login" value="login"/>
    </form>
-   <div class="col-lg-6">
    </div>
+   <div class="col-lg-4">
    </div>
  </div>
  </div>
@@ -42,17 +42,10 @@ if(!isset($_COOKIE['SSID']))
  else {
    // Login successful
    ?>
-   <div class = "jumbotron jumbotron-fluid">
-     <div class="container">
-      <h1 align="center">Project Unknown Welcomes You</h1>
-    </div>
-   </div>
    <div class="container">
      <div class="row">
        <div class="col-lg-10">
    <?php
-   echo "Login successful<br/>";
-   echo "Welcome ".$_SESSION['user_name']." you have logged in !!<br/>";
    // Had the account been locked out since last login?
    if( $_SESSION['Flogin'] >= $_SESSION['TFlogin'] ) {
        echo "<p><em>Warning</em>: Brute Force may have been tried over you account.</p>";
@@ -64,11 +57,13 @@ if(!isset($_COOKIE['SSID']))
    $data->execute();
    ?>
  </div>
+ <!--
  <div class="col-lg-2">
    <form action="login_val.php" method="post">
      <input type="submit" class="btn" name ="logout" value="logout"/>
    </form>
  </div>
+-->
  </div>
  </div>
  <?php  }

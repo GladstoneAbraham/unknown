@@ -14,7 +14,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <body class="bg-secondary">
     <?php
     require "sub_header.php";
+    if(isset($_COOKIE['SSID']))
+      require "navbar.php";
     ?>
