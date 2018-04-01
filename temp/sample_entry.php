@@ -1,5 +1,5 @@
 <?php
-  require "db_init.php";
+  require "../config/db_init.php";
   $stmt = $conn->prepare("Insert into user_entries(Name,Password,FailedLogin,LastLogin) values((:user),(:pass),(:flogin),now())");
   $user = "sw1";
   $stmt->bindParam(':user',$user,PDO::PARAM_STR);

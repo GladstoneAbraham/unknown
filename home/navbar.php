@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand text-danger" href="index.php">UNKNOWN</a>
+  <a class="navbar-brand text-danger" href="../home/index.php">UNKNOWN</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link text-light" href="index.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link text-light" href="../home/index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="addurpost.php">Write Your Post</a>
+        <a class="nav-link text-light" href="../home/addurpost.php">Write Your Post</a>
       </li>
       <!--
       <li class="nav-item">
@@ -32,7 +32,7 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <form class="form-inline my-2 my-lg-0" action="login_val.php" method="post">
+    <form class="form-inline my-2 my-lg-0" action="../login/login_val.php" method="post">
       <button class="btn btn-outline-light my-2 my-sm-0" name="logout" type="submit">logout</button>
     </form>
   </div>

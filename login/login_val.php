@@ -1,12 +1,12 @@
 <?php
-require "db_init.php";
-require "sessions.php";
-require "validate.php";
+require "../config/db_init.php";
+require "../config/sessions.php";
+require "../login/validate.php";
 if(isset($_POST['logout']))
 {
   setcookie("SSID","",time()-3600,"/",$_SERVER['HTTP_HOST'],false,true);
   session_destroy();
-  header('Location:index.php');
+  header('Location:../home/index.php');
 }
 if(isset($_POST['login']))
 {
@@ -21,10 +21,9 @@ if(isset($_POST['login']))
   $_SESSION['password'] = $pass;
 
   //prevent brute force
-  $total_failed_login = 3;
+  $total_failed_login = $_SESSION['TFlogin'];
   $lockout_time       = 1;
   $account_locked     = false;
-  $_SESSION['TFlogin'] = $total_failed_login;
   //verify user cred from db
   $data = $conn->prepare( 'SELECT FailedLogin, LastLogin FROM user_entries WHERE Name = (:user) LIMIT 1;' );
   $data->bindParam( ':user', $user, PDO::PARAM_STR );
@@ -63,6 +62,6 @@ if(isset($_POST['login']))
   $data = $conn->prepare( 'UPDATE user_entries SET LastLogin = now() WHERE Name = (:user) LIMIT 1;' );
   $data->bindParam( ':user', $user, PDO::PARAM_STR );
   $data->execute();
-  header('Location:index.php');
+  header('Location:../home/index.php');
 }
 ?>

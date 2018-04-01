@@ -1,8 +1,9 @@
 <?php
-require "db_init.php";
+require "../config/db_init.php";
 
 session_start();
 $_SESSION['lock'] = false;
+$_SESSION['TFlogin'] = 3;
 $_SESSION['failed'] = false;
 function session_generate()
 {

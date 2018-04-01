@@ -1,5 +1,12 @@
 <?php
-  require "header.php"
+  require "../main-layout/header.php";
+  if(!isset($_COOKIE['SSID']))
+    header('Location:../home/index.php');
+  if (isset($_POST['post'])) {
+    $title = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['ptitle'] );
+    $post = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['pcontent'] );
+    echo $title."<br/>".$post;
+  }
 ?>
 <div class = "jumbotron jumbotron-fluid bg-light">
   <div class="container">
@@ -12,7 +19,7 @@
     <div class="row">
       <div class="col-lg-6">
       <h4> Post Title : </h4>
-      <input class="form-control" type="text" name="ptitle" />
+      <input class="form-control" type="text" name="ptitle" required/>
     </div>
     <div class="col-lg-6">
     </div>
@@ -20,7 +27,7 @@
   <br/>
   <div class="container">
     <div class="row">
-        <input class="form-control" type="text" style="min-height:500px;"name="pcontent" max-length="10000"/>
+        <textarea class="form-control" rows="10" autocomplete="no" name="pcontent" max-length="10000"></textarea>
     </div>
   </div>
   <br/>
