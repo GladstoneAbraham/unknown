@@ -4,6 +4,7 @@
     header('Location:../home/index.php');
   if (isset($_POST['post'])) {
     $title = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['ptitle'] );
+    //$post = $_POST['pcontent'];
     $post = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['pcontent'] );
     echo $title."<br/>".$post;
   }
