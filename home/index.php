@@ -11,14 +11,14 @@
     <div class="container col-lg-9">
       <div class="row text-light bg-dark">
         <div class="col-lg-12">
-          <h5 class="text-danger">DESCRIPTION</h5>
-          <p style="color:white;font-size:25px;font-family:Consolas;text-align: center;"><strong>"WE SERVE IN THE DARK TO BRING LIGHT"</strong></p> <br>
-          <p style="font-size:18px;fon-family:Times;">Yes, Hackers and security experts...WELCOME you all..!!<br>
-          Not to hack our site ...!!hahaaah but to suggest us and to develop our skills...!!<br>
-          As of today we are the social engineers to bring out and reveal the evil things ...!!<br>
-          It's very happy for us to connect you people together...!!<br>
-          Use this for only good things...!!<br>
-      </div>
+          <h5 class="text-danger">My First Post:</h5>
+          Hello, this is the first post i have posted on this page since i started developing from the scratch.
+          Hello, this is the first post i have posted on this page since i started developing from the scratch.
+          Hello, this is the first post i have posted on this page since i started developing from the scratch.
+          Hello, this is the first post i have posted on this page since i started developing from the scratch.
+          Hello, this is the first post i have posted on this page since i started developing from the scratch.
+          Hello, this is the first post i have posted on this page since i started developing from the scratch.
+        </div>
       </div>
       <br/>
       <div class="row text-light bg-dark">
