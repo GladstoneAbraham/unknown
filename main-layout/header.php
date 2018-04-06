@@ -3,7 +3,7 @@
   require "../config/sessions.php";
   require "../config/db_init.php";
   header("Refresh:60");
-  error_reporting(0);
+  error_reporting(0); 
   ?>
   <html>
   <head>

@@ -4,8 +4,9 @@ if(!isset($_COOKIE['SSID']))
 {
   if($_SESSION['lock']==true){
     echo "<pre><br/>Your account has been locked because of too many failed logins.<br />If this is the case, <em>please try again in {$lockout_time} minutes</em>.</pre>";
-  }
-    else {
+}
+else
+{
       if($_SESSION['failed']==true){
       echo "<pre><br />Username and/or password incorrect.<br /></pre>";
     }

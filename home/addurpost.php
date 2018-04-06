@@ -1,12 +1,18 @@
 <?php
   require "../main-layout/header.php";
+  require "../config/db_init.php";
   if(!isset($_COOKIE['SSID']))
     header('Location:../home/index.php');
   if (isset($_POST['post'])) {
-    $title = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['ptitle'] );
-    //$post = $_POST['pcontent'];
-    $post = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['pcontent'] );
-    echo $title."<br/>".$post;
+    $title = preg_replace( "/[^a-zA-Z0-9_, :()#@!&*$+-]/", "", $_POST['ptitle'] );
+    $post = preg_replace( "/[^a-zA-Z0-9_, :()#@!&*$+-]/", "", $_POST['pcontent'] );
+    $stmt = $conn->prepare("Insert into user_post(Name,Title,Content,Time) values((:user),(:titles),(:post),CURRENT_TIME())");
+    $ptitle = $_POST['ptitle'];
+    $stmt->bindParam(':user',$_SESSION['user_name'],PDO::PARAM_STR);
+    $stmt->bindParam(':titles',$ptitle,PDO::PARAM_STR);
+    $stmt->bindParam(':post',$post,PDO::PARAM_STR);
+    $stmt->execute();
+    echo 'Post Added!!';
   }
 ?>
 <div class = "jumbotron jumbotron-fluid bg-light">
@@ -20,7 +26,7 @@
     <div class="row">
       <div class="col-lg-6">
       <h4> Post Title : </h4>
-      <input class="form-control" type="text" name="ptitle" required/>
+      <input class="form-control" type="text" name="ptitle" placeholder="Title" required/>
     </div>
     <div class="col-lg-6">
     </div>
@@ -28,7 +34,7 @@
   <br/>
   <div class="container">
     <div class="row">
-        <textarea class="form-control" rows="10" autocomplete="no" name="pcontent" max-length="10000"></textarea>
+        <textarea class="form-control" rows="10" autocomplete="no" name="pcontent" placeholder="Feel free to type" max-length="10000"></textarea>
     </div>
   </div>
   <br/>
