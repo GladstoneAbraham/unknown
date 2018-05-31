@@ -1,17 +1,30 @@
 <?php
-  require "../main-layout/header.php";
-  if(!isset($_COOKIE['SSID']))
-    header('Location:../home/index.php');
-  if (isset($_POST['post'])) {
-    //$title = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['ptitle'] );
-    $title = $_POST['ptitle'];
-    $title = htmlentities($title);
-    //html_entity_decode();
-    $post = $_POST['pcontent'];
-    $post = htmlentities($post);
-    //$post = preg_replace( "/[^a-zA-Z0-9_,:()#@!&*$+-]/", "", $_POST['pcontent'] );
-    echo $title."<br/>".$post;
+require_once "../main-layout/header.php";
+if(!isset($_COOKIE['SSID']))
+  header('Location:../home/index.php');
+if (isset($_POST['post'])) {
+  $title = $_POST['ptitle'];
+  $post = $_POST['pcontent'];
+  $user = $_SESSION['user_name'];
+  if($db->insert_post($title,$post,1,1,$user,1,$conn))
+  {
+    echo "Your Post has been Posted";
   }
+  else {
+    echo "An Error has occured while posting, retry after sometime..";
+  }
+}
+if (isset($_POST['draft'])) {
+  $title = $_POST['ptitle'];
+  $post = $_POST['pcontent'];
+  if($db->insert_post($title,$post,1,1,$user,0,$conn))
+  {
+    echo "Your Post has been Drafted";
+  }
+  else {
+    echo "An Error has occured while drafting, retry after sometime..";
+  }
+}
 ?>
 <div class = "jumbotron jumbotron-fluid bg-light">
   <div class="container">
@@ -51,3 +64,4 @@
 </div>
 </form>
 </div>
+<?php require '../main-layout/footer.php';?>

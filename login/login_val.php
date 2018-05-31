@@ -1,7 +1,7 @@
 <?php
-require "../config/db_init.php";
-require "../config/sessions.php";
-require "../login/validate.php";
+require_once "../config/db_init.php";
+require_once "../config/sessions.php";
+require_once "../login/validate.php";
 if(isset($_POST['logout']))
 {
   setcookie("SSID","",time()-3600,"/",$_SERVER['HTTP_HOST'],false,true);

@@ -1,5 +1,5 @@
 <?php
-  require "../config/db_init.php";
+  require_once "../config/db_init.php";
   $stmt = $conn->prepare("Insert into post(Name,Title,Content) values((:user),(:ptitle),(:pcontent))");
   $user = "sw1";
   $stmt->bindParam(':user',$user,PDO::PARAM_STR);

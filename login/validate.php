@@ -1,14 +1,7 @@
 <?php
-/**
- *
- */
+
 class Validate
 {
-
-  function __construct()
-  {
-    # code...
-  }
   function username($user)
   {
     $user = stripslashes( $user );

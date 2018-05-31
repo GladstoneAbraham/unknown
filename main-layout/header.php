@@ -1,9 +1,10 @@
 <?php
-  require "../login/validate.php";
-  require "../config/sessions.php";
-  require "../config/db_init.php";
+  require_once "../login/validate.php";
+  require_once "../config/sessions.php";
+  require_once "../config/db_init.php";
+  require_once "../home/db_class.php";
   header("Refresh:60");
-  error_reporting(0);
+  //error_reporting(0);
   ?>
   <html>
   <head>
